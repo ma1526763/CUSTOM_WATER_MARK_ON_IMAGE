@@ -39,13 +39,11 @@ class UploadImage:
             while image_width > 650 or image_height > 550:
                 image_width = image_width - int(image_width * 0.05)
                 image_height = image_height - int(image_height * 0.05)
-            print(image_width, image_height)
             while image_width < 550:
                 image_width = image_width + int(image_width * 0.05)
                 image_height = image_height + int(image_height * 0.01)
             if image_height > 600:
                 image_height = image_height - int(image_height*0.35)
-            print(image_height)
 
             img_resized = img.resize((image_width, image_height))  # new width & height
             img = ImageTk.PhotoImage(img_resized)

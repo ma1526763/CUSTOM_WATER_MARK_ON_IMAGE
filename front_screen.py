@@ -21,9 +21,9 @@ class FrontScreen:
         quickly_label.place(x=100, y=200)
         quickly_label = Label(text="Edit & add watermark to images quickly.", font=("Arial", 16), bg=BACKGROUND_THEME, fg="white")
         quickly_label.place(x=100, y=290)
-    #     create_water_mark = Button(text="Create Watermark", font=("Arial", 28, "bold"), fg=BACKGROUND_THEME, command=self.upload_photo)
-    #     create_water_mark.place(x=100, y=340)
-    #
-    # def upload_photo(self):
-    #     self.window.destroy()
-    #     UploadImage()
+        create_water_mark = Button(text="Create Watermark", font=("Arial", 28, "bold"), fg=BACKGROUND_THEME, command=self.upload_photo)
+        create_water_mark.place(x=100, y=340)
+
+    def upload_photo(self):
+        self.window.destroy()
+        UploadImage()
