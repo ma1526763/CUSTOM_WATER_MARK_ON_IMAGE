@@ -1,9 +1,7 @@
 from tkinter import *
-from tkinter import ttk, filedialog
+from tkinter import ttk, messagebox
 from tkinter.colorchooser import askcolor
 from PIL import ImageGrab
-from pyscreenshot import grab
-
 
 BACKGROUND_THEME = "#222222"
 primary_color = "#a44726"
@@ -184,12 +182,9 @@ class CreateWaterMark:
         y = self.water_mark_window.winfo_rooty() + self.canvas.winfo_y()
         width = self.canvas.winfo_width()
         height = self.canvas.winfo_height()
-        im = grab(bbox=(x, y+6, int(x + width*1.26), int(y + height*1.28)))
-        im.show()
+        im = ImageGrab.grab(bbox=[x, y+6, int(x + width*1.25), int(y + height*1.27)])
+        im.save(fp="Saved_Image.png",)
+        self.water_mark_window.iconify()
+        messagebox.showinfo(title="SAVED", message="Check Your Project file. Image has been saved")
 
-        # im = ImageGrab.grab(bbox=[x, y, x + width, y + height])
-        # filedialog.askopenfilename(initialdir="/", title="Select A File",
-        #                            filetypes=(("jpeg", "*.jpg"), ("png", "*.png")))
-        #
-        # im.save(fp="Saved_Image.png",)
 
