@@ -182,6 +182,8 @@ class CreateWaterMark:
         y = self.water_mark_window.winfo_rooty() + self.canvas.winfo_y()
         width = self.canvas.winfo_width()
         height = self.canvas.winfo_height()
+        # DEPEND ON YOUR SCREEN MAKE changes
+        # im = ImageGrab.grab(bbox=[x, y, x + width, y + height])
         im = ImageGrab.grab(bbox=[x, y+6, int(x + width*1.25), int(y + height*1.27)])
         im.save(fp="Saved_Image.png",)
         self.water_mark_window.iconify()
