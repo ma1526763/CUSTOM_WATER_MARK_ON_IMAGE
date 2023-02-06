@@ -1,10 +1,12 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, filedialog
 from tkinter.colorchooser import askcolor
+from PIL import ImageGrab
+from pyscreenshot import grab
+
 
 BACKGROUND_THEME = "#222222"
 primary_color = "#a44726"
-
 
 class CreateWaterMark:
     def __init__(self, img, img_width, img_height, file_path):
@@ -57,8 +59,7 @@ class CreateWaterMark:
     def window_settings(self):
         self.water_mark_window.title("Water mark")
         self.water_mark_window.config(background=BACKGROUND_THEME)
-        self.water_mark_window.geometry(f"{self.image_width + 370}x{self.image_height + 200}+200+100")
-        self.water_mark_window.resizable(False, False)
+        self.water_mark_window.geometry(f"{self.image_width + 370}x{self.image_height + 200}")
         self.canvas.create_text(self.image_width - 35, self.image_height - 10,
                                 text=f"{self.image_width} x {self.image_height}", font=("Arial", 10), fill="#E2DFD2")
 
@@ -73,7 +74,6 @@ class CreateWaterMark:
         self.create_label("Opacity", r=6)
         self.create_label("Color:", r=8)
         self.create_label("Copy:", r=10)
-        self.create_label("Reset:", r=11)
         self.create_label("● Add custom water mark, size, opacity, angle, and font etc.", r=9, c=1, color="#E2DFD2",
                           size="normal", sticky="WS")
         self.create_label("● Offer various output formats, such as JPG, PNG, or GIF.", r=10, c=1, color="#E2DFD2",
@@ -180,4 +180,16 @@ class CreateWaterMark:
         print(int(value))
 
     def save_image(self):
-        print(self.image)
+        x = self.water_mark_window.winfo_rootx() + self.canvas.winfo_x()
+        y = self.water_mark_window.winfo_rooty() + self.canvas.winfo_y()
+        width = self.canvas.winfo_width()
+        height = self.canvas.winfo_height()
+        im = grab(bbox=(x, y+6, int(x + width*1.26), int(y + height*1.28)))
+        im.show()
+
+        # im = ImageGrab.grab(bbox=[x, y, x + width, y + height])
+        # filedialog.askopenfilename(initialdir="/", title="Select A File",
+        #                            filetypes=(("jpeg", "*.jpg"), ("png", "*.png")))
+        #
+        # im.save(fp="Saved_Image.png",)
+
